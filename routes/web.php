@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Forum\ThreadController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +20,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/forum', [ThreadController::class, 'index'])->name('thread');
+Route::get('/forum/thread', [ThreadController::class, 'show'])->name('thread.show');
