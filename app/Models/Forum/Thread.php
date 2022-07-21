@@ -10,6 +10,8 @@ class Thread extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -17,6 +19,6 @@ class Thread extends Model
 
     public function tag()
     {
-        return $this->belongsTo(Tag::class)
+        return $this->belongsTo(Tag::class);
     }
 }

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Forum;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ThreadRequest;
+use App\Models\Forum\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ThreadController extends Controller
 {
@@ -24,7 +27,8 @@ class ThreadController extends Controller
      */
     public function create()
     {
-        //
+        $tags = Tag::get();
+        return view('thread.create', compact('tags'));
     }
 
     /**
@@ -33,9 +37,19 @@ class ThreadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ThreadRequest $request)
     {
-        //
+        $data = $request->all();
+        $data['slug'] = Str::slug($data['title']. "-" .Str::random(6));
+
+        auth()->user()->threads()->create([
+            'title'     => $data['title'],
+            'tag_id'    => $data['tag'],
+            'slug'      => $data['slug'],
+            'body'      => $data['body']  
+        ]);
+
+        return back();
     }
 
     /**

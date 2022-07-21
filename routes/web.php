@@ -22,5 +22,8 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/forum', [ThreadController::class, 'index'])->name('thread');
-Route::get('/forum/thread', [ThreadController::class, 'show'])->name('thread.show');
+Route::resource('thread', ThreadController::class);
+
+
+// Route::get('/forum', [ThreadController::class, 'index'])->name('thread');
+// Route::get('/forum/thread', [ThreadController::class, 'show'])->name('thread.show');
