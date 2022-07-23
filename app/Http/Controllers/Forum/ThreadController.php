@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Forum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ThreadRequest;
 use App\Models\Forum\Tag;
+use App\Models\Forum\Thread;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -17,7 +18,9 @@ class ThreadController extends Controller
      */
     public function index()
     {
-        return view('thread.index');
+        $threads = Thread::latest()->paginate(10);
+
+        return view('thread.index', compact('threads'));
     }
 
     /**
