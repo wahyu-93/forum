@@ -32,4 +32,9 @@ class Thread extends Model
     {
         return $this->hasMany(Reply::class)->orderBy('created_at', 'desc');
     }
+
+    public function answer()
+    {
+        return $this->belongsTo(Reply::class, 'reply_id');
+    }
 }

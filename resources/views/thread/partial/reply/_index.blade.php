@@ -16,7 +16,9 @@
                 </div>
 
                 <div>
-                    <span class="text-success">Mars as answer</span>
+                    @can('update', $thread)
+                        <span class="text-success">&middot; Mark as answer</span>
+                    @endcan
                 </div>
             </div>
             
