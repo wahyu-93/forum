@@ -92,9 +92,12 @@ class ThreadController extends Controller
      */
     public function update(ThreadRequest $request, Thread $thread)
     {
-        if($thread->user_id != auth()->user()->id){
-            abort(404);
-        };
+        // if($thread->user_id != auth()->user()->id){
+        //     abort(404);
+        // };
+
+        // policy
+        $this->authorize('update', $thread);
 
         $slug = Str::slug($request['title']. "-" .Str::random(6));
 

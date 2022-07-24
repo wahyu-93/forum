@@ -38,10 +38,12 @@ class ReplyController extends Controller
 
     public function update(Request $request, Thread $thread, Reply $reply)
     {
-        if($reply->user_id != auth()->user()->id)
-        {
-            abort(404);
-        };
+        // if($reply->user_id != auth()->user()->id)
+        // {
+        //     abort(404);
+        // };
+
+        $this->authorize('update', $reply);
 
         $request->validate([
             'body'  => 'required|min:3'

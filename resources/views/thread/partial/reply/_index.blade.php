@@ -27,9 +27,13 @@
                     <small>
                         <span class="text-secondary" style="font-size: 12px">Replied {{ $reply->created_at->diffForhumans() }}</span>
                         
-                        @if($reply->user_id == auth()->user()->id)
+                        {{-- @if($reply->user_id == auth()->user()->id)
                             <span>&middot; <a href="{{ route('reply.edit', [$thread, $reply]) }}" class="text-secondary text-decoration-none" style="font-size: 12px">Edit</a></span>
-                        @endif
+                        @endif --}}
+
+                        @can('update', $reply)
+                            <span>&middot; <a href="{{ route('reply.edit', [$thread, $reply]) }}" class="text-secondary text-decoration-none" style="font-size: 12px">Edit</a></span>
+                        @endcan
                     </small>
                 </div>
             </div>

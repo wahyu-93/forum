@@ -27,9 +27,14 @@
                     <small class="text-secondary">
                         Publish {{ $thread->created_at->diffForhumans() }} minutes ago &middot; {{ $tag->name }}
         
-                        @if($thread->user_id == auth()->user()->id) 
+                        {{-- @if($thread->user_id == auth()->user()->id) 
                             &middot; <a href="{{ route('thread.edit', $thread) }}" class="text-secondary text-decoration-none">Edit</a>
-                        @endif
+                        @endif --}}
+
+                        {{-- policy --}}
+                        @can('update', $thread)
+                            &middot; <a href="{{ route('thread.edit', $thread) }}" class="text-secondary text-decoration-none">Edit</a>
+                        @endcan
                     </small>
 
                     <hr>
