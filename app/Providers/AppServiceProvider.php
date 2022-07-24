@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Forum\Tag;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        view()->composer('thread.partial._form', function($view){
+            $view->with('tags', Tag::get());
+        });
     }
 
     /**

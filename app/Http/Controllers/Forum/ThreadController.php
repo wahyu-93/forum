@@ -37,10 +37,10 @@ class ThreadController extends Controller
      */
     public function create()
     {
-        $tags = Tag::get();
+       
         $thread = new Thread();
 
-        return view('thread.create', compact('tags', 'thread'));
+        return view('thread.create', compact('thread'));
     }
 
     /**
@@ -77,9 +77,7 @@ class ThreadController extends Controller
      */
     public function edit(Thread $thread)
     {
-        $tags = Tag::get();
-
-        return view('thread.edit', compact('tags', 'thread'));
+        return view('thread.edit', compact('thread'));
     }
 
     /**
