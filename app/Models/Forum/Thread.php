@@ -27,4 +27,9 @@ class Thread extends Model
     {
         return $this->belongsTo(Tag::class);
     }
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
 }

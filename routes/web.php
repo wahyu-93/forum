@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Forum\ReplyController;
 use App\Http\Controllers\Forum\ThreadController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,9 +23,9 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// thread
 Route::resource('thread', ThreadController::class)->except('show');
 Route::get('thread/{tag}/{thread}', [ThreadController::class, 'show'])->name('thread.show');
 
-
-// Route::get('/forum', [ThreadController::class, 'index'])->name('thread');
-// Route::get('/forum/thread', [ThreadController::class, 'show'])->name('thread.show');
+// reply
+Route::post('reply/{thread}', [ReplyController::class, 'store'])->name('reply.store');

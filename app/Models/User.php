@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Forum\Reply;
 use App\Models\Forum\Thread;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -51,5 +52,10 @@ class User extends Authenticatable
     public function avatar($size = '200')
     {
         return $grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $this->email ) ) ) . "?d=mm&s=" . $size;
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
     }
 }
