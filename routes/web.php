@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Forum\AnswerController;
 use App\Http\Controllers\Forum\ReplyController;
 use App\Http\Controllers\Forum\ThreadController;
 use Illuminate\Support\Facades\Route;
@@ -31,3 +32,6 @@ Route::get('thread/{tag}/{thread}', [ThreadController::class, 'show'])->name('th
 Route::post('reply/{thread}', [ReplyController::class, 'store'])->name('reply.store');
 Route::get('reply/{thread}/{reply}', [ReplyController::class, 'edit'])->name('reply.edit');
 Route::patch('reply/{thread}/{reply}', [ReplyController::class, 'update'])->name('reply.update');
+
+// answer
+Route::patch('mark-as-answer/{reply}', [AnswerController::class, 'store'])->name('mark.answer.store');

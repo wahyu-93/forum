@@ -17,7 +17,15 @@
 
                 <div>
                     @can('update', $thread)
-                        <span class="text-success">&middot; Mark as answer</span>
+                        <a 
+                            href="{{ route('mark.answer.store', $reply) }}" 
+                            class="text-success text-decoration-none"
+                            onclick="event.preventDefault(); getElementById('mark-answer-{{ $reply->hash }}').submit();">&middot; Mark as answer</a>
+
+                        <form action="{{ route('mark.answer.store', $reply) }}" method="POST" id="mark-answer-{{ $reply->hash }}" style="display: none">
+                            @csrf
+                            @method('patch')
+                        </form>
                     @endcan
                 </div>
             </div>

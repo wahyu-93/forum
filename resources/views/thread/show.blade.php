@@ -44,41 +44,47 @@
                     @include('thread.partial.reply._create')
 
                     {{-- best answer --}}
-                    <div class="d-flex mb-4">
-                        <div>
-                            <img 
-                                width="40" height="40"
-                                class="rounded-circle"
-                                style="object-fit: cover; object-position: center"
-                                src="{{ $thread->answer->user->avatar() }}" 
-                                alt="...">
-                        </div>
-                        
-                        <div class="flex-grow-1 ms-2">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <h5> {{ $thread->answer->user->name }} </h5>
-                                </div>
-                
-                                <div>
-                                    <span class="text-success">&middot; Best answer</span>
-                                </div>
-                            </div>
-                            
+                    @if($thread->answer)
+                        <div class="d-flex mb-4">
                             <div>
-                                {!! nl2br($thread->answer->body) !!}
-                
-                                <div>
-                                    <small>
-                                        <span class="text-secondary" style="font-size: 12px">Replied {{ $thread->answer->created_at->diffForhumans() }}</span>
-                                    </small>
-                                </div>
+                                <img 
+                                    width="40" height="40"
+                                    class="rounded-circle"
+                                    style="object-fit: cover; object-position: center"
+                                    src="{{ $thread->answer->user->avatar() }}" 
+                                    alt="...">
                             </div>
                             
+                            <div class="flex-grow-1 ms-2" title="Best Answer">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h5> {{ $thread->answer->user->name }} </h5>
+                                    </div>
+                    
+                                    <div>
+                                        <img src="{{ asset('assets/img/bintang.png') }}" width="20" height="20" alt="">
+                                        <img src="{{ asset('assets/img/bintang.png') }}" width="20" height="20" alt="">
+                                        <img src="{{ asset('assets/img/bintang.png') }}" width="20" height="20" alt="">
+                                        <img src="{{ asset('assets/img/bintang.png') }}" width="20" height="20" alt="">
+                                        <img src="{{ asset('assets/img/bintang.png') }}" width="20" height="20" alt="">
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    {!! nl2br($thread->answer->body) !!}
+                    
+                                    <div>
+                                        <small>
+                                            <span class="text-secondary" style="font-size: 12px">Replied {{ $thread->answer->created_at->diffForhumans() }}</span>
+                                        </small>
+                                    </div>
+                                </div>
+                                
+                            </div>
                         </div>
-                    </div>
 
-                    <hr>
+                        <hr>
+                    @endif
 
 
                     @include('thread.partial.reply._index')
