@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Forum;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ThreadRequest;
+use App\Models\Forum\Reply;
 use App\Models\Forum\Tag;
 use App\Models\Forum\Thread;
 use Illuminate\Http\Request;
@@ -66,7 +67,9 @@ class ThreadController extends Controller
      */
     public function show(Tag $tag, Thread $thread)
     {
-        return view('thread.show', compact('tag', 'thread'));
+        $replies = $thread->replies;
+    
+        return view('thread.show', compact('tag', 'thread', 'replies'));
     }
 
     /**
