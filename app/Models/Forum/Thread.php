@@ -11,7 +11,7 @@ class Thread extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-    protected $with = ['user', 'tag'];
+    protected $with = ['tag', 'user'];
 
     public function getRouteKeyName()
     {

@@ -12,9 +12,7 @@
         <div class="flex-grow-1 ms-2">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h5>{{ $reply->user->name }} 
-                        <span class="text-secondary" style="font-size: 12px">Reply {{ $reply->created_at->diffForhumans() }}</span>
-                    </h5>
+                    <h5>{{ $reply->user->name }} </h5>
                 </div>
 
                 <div>
@@ -24,7 +22,18 @@
             
             <div>
                 {!! nl2br($reply->body) !!}
+
+                <div>
+                    <small>
+                        <span class="text-secondary" style="font-size: 12px">Replied {{ $reply->created_at->diffForhumans() }}</span>
+                        
+                        @if($reply->user_id == auth()->user()->id)
+                            <span>&middot; <a href="{{ route('reply.edit', [$thread, $reply]) }}" class="text-secondary text-decoration-none" style="font-size: 12px">Edit</a></span>
+                        @endif
+                    </small>
+                </div>
             </div>
+            
         </div>
     </div>
 @empty

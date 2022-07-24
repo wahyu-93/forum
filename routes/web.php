@@ -29,3 +29,5 @@ Route::get('thread/{tag}/{thread}', [ThreadController::class, 'show'])->name('th
 
 // reply
 Route::post('reply/{thread}', [ReplyController::class, 'store'])->name('reply.store');
+Route::get('reply/{thread}/{reply}', [ReplyController::class, 'edit'])->name('reply.edit');
+Route::patch('reply/{thread}/{reply}', [ReplyController::class, 'update'])->name('reply.update');
