@@ -79,9 +79,11 @@ class ThreadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Thread $thread)
     {
-        //
+        $tags = Tag::get();
+
+        return view('thread.edit', compact('tags', 'thread'));
     }
 
     /**
@@ -91,9 +93,22 @@ class ThreadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Thread $thread)
     {
-        //
+        if($thread->user_id != auth()->user()->id){
+            abort(404);
+        };
+
+        $request['slug'] = Str::slug($request['title']. "-" .Str::random(6));
+
+        $thread->update([
+            'title'     => $request['title'],
+            'tag_id'    => $request['tag'],
+            'slug'      => $request['slug'],
+            'body'      => $request['body']  
+        ]);
+
+        return redirect()->route('thread.show',[$thread->tag, $thread]);
     }
 
     /**
