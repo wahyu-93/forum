@@ -11,6 +11,12 @@ use Illuminate\Support\Str;
 
 class ThreadController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +24,8 @@ class ThreadController extends Controller
      */
     public function index()
     {
-        $threads = Thread::latest()->paginate(10);
+        // $threads = Thread::with('user', 'tag')->latest()->paginate(10);
+        $threads = Thread::latest()->paginate(10);  
 
         return view('thread.index', compact('threads'));
     }
@@ -52,7 +59,7 @@ class ThreadController extends Controller
             'body'      => $data['body']  
         ]);
 
-        return back();
+        return redirect()->route('thread.index');
     }
 
     /**
@@ -61,9 +68,9 @@ class ThreadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Tag $tag, Thread $thread)
     {
-        return view('thread.show');
+        return view('thread.show', compact('tag', 'thread'));
     }
 
     /**

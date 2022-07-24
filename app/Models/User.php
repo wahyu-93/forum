@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Thread::class);
     }
+
+    public function avatar($size = '200')
+    {
+        return $grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $this->email ) ) ) . "?d=mm&s=" . $size;
+    }
 }

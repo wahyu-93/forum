@@ -11,6 +11,12 @@ class Thread extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $with = ['user', 'tag'];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function user()
     {

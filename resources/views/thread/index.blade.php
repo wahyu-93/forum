@@ -14,19 +14,27 @@
                             width="40" height="40"
                             class="rounded-circle"
                             style="object-fit: cover; object-position: center"
-                            src="https://images.unsplash.com/photo-1609505848912-b7c3b8b4beda?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjN8fHdvbWFufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="...">
+                            src="{{ $thread->user->avatar() }}" 
+                            alt="...">
                     </div>
                 
                     <div class="flex-grow-1 ms-3">
-                        <h5>{{ $thread->title }}</h5>
+                        <h5>
+                            <a href="{{ route('thread.show', [$thread->tag, $thread]) }}" class="text-decoration-none text-black">{{ $thread->title }}</a>
+                        </h5>
                         
                         <div class="text-secondary" style="text-align: justify">
-                            {{ $thread->body }}
+                            {{ Str::limit($thread->body, 170) }}
                         </div>
 
                         <small class="text-secondary">
                             <a href="" style="text-decoration: none;" class="text-secondary"> {{ $thread->user->name }} </a> publish {{ $thread->created_at->diffForhumans() }}
                         </small>
+                        
+                        <div class="mt-1">
+                            <small class="border border-1 rounded p-1">{{ $thread->tag->name }}</small>
+                        </div>
+                        
                     </div>
                 </div>
 
