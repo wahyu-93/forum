@@ -13,4 +13,9 @@ class Tag extends Model
     {
         return 'slug';
     }
+
+    public function threads()
+    {
+        return $this->hasMany(Thread::class);
+    }
 }

@@ -25,7 +25,7 @@
                     </div>
 
                     <small class="text-secondary">
-                        Publish {{ $thread->created_at->diffForhumans() }} minutes ago &middot; {{ $tag->name }}
+                        Publish {{ $thread->created_at->diffForhumans() }} minutes ago &middot; <a class="text-decoration-none text-secondary" href="{{ route('tag.show', $thread->tag) }}">{{ $tag->name }}</a>
         
                         {{-- @if($thread->user_id == auth()->user()->id) 
                             &middot; <a href="{{ route('thread.edit', $thread) }}" class="text-secondary text-decoration-none">Edit</a>

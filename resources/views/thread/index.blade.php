@@ -4,7 +4,13 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header">Forum</div>
+        <div class="card-header">
+            <a class="text-decoration-none text-secondary" href="{{ route('thread.index') }}" >Forum</a>
+            @isset($tag)
+                <span>/ <a class="text-decoration-none text-secondary"> {{ $tag->name }}</span>
+            @endisset
+
+        </div>
 
         <div class="card-body">
             @foreach ($threads as $thread)
@@ -32,7 +38,7 @@
                         </small>
                         
                         <div class="mt-1">
-                            <small class="border border-1 rounded p-1">{{ $thread->tag->name }}</small>
+                            <small class="border border-1 rounded p-1"><a class="text-decoration-none text-secondary" href="{{ route('tag.show', $thread->tag) }}"> {{ $thread->tag->name }}</a></small>
                         </div>
                         
                     </div>
