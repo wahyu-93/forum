@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Forum\AnswerController;
 use App\Http\Controllers\Forum\ReplyController;
+use App\Http\Controllers\Forum\SearchController;
 use App\Http\Controllers\Forum\TagController;
 use App\Http\Controllers\Forum\ThreadController;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,9 @@ Route::patch('reply/{thread}/{reply}', [ReplyController::class, 'update'])->name
 
 // answer
 Route::patch('mark-as-answer/{reply}', [AnswerController::class, 'store'])->name('mark.answer.store');
+
+// search
+Route::get('forum/search', [SearchController::class, 'index'])->name('thread.search');
 
 // tag
 Route::get('forum/tags',[TagController::class, 'index'])->name('tag.index');

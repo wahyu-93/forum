@@ -5,13 +5,19 @@ namespace App\Models\Forum;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Thread extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     protected $guarded = ['id'];
     protected $with = ['tag', 'user'];
+
+    public function searchableAs()
+    {
+        return 'threads';
+    }
 
     public function getRouteKeyName()
     {

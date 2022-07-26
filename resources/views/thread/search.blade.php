@@ -17,7 +17,7 @@
         </div>
 
         <div class="card-body">
-            @foreach ($threads as $thread)
+            @forelse ($threads as $thread)
                 <div class="d-flex mb-4">
                     <div class="flex-shrink-0">
                         <img 
@@ -48,7 +48,9 @@
                     </div>
                 </div>
 
-            @endforeach
+            @empty
+                <p class="mb-0">We can not find what are your looing for . . . <a href="{{ route('thread.index') }}">Browse threads</a></p>    
+            @endforelse
             
             {{ $threads->links() }}
             
