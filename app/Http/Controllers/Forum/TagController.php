@@ -14,6 +14,11 @@ class TagController extends Controller
         $this->middleware('auth');
     }
 
+    public function index()
+    {
+        return Tag::get();
+    }
+
     public function show(Tag $tag)
     {
         // $threads = Thread::where('tag_id', $tag->id)->latest()->paginate(10);

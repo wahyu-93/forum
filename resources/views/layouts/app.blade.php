@@ -29,13 +29,12 @@
                 <div class="row">
                     <div class="col-md-3">
                         <ul class="list-group">
-                            <li class="list-group-item active">
-                                <a href="{{ route('thread.create') }}" class="text-white" style="text-decoration: none">New Thread</a>
+                            <li class="list-group-item mb-2 {{ Request::is('thread/create') ? 'active' : '' }}">
+                                <a href="{{ route('thread.create') }}" class="text-black" style="text-decoration: none">New Thread</a>
                             </li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Morbi leo risus</li>
-                            <li class="list-group-item">Porta ac consectetur ac</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
+                            
+                            <tags></tags>
+                            
                           </ul>
                     </div>
         

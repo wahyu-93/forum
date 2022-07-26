@@ -38,4 +38,5 @@ Route::patch('reply/{thread}/{reply}', [ReplyController::class, 'update'])->name
 Route::patch('mark-as-answer/{reply}', [AnswerController::class, 'store'])->name('mark.answer.store');
 
 // tag
+Route::get('forum/tags',[TagController::class, 'index'])->name('tag.index');
 Route::get('forum/{tag}', [TagController::class, 'show'])->name('tag.show');
