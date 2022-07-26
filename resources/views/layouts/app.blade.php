@@ -23,14 +23,30 @@
 <body>
     <div id="app">
         @include('layouts.partials.navigation')
-        
+
         <div class="py-4">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
                         <ul class="list-group">
-                            <li class="list-group-item mb-2 {{ Request::is('thread/create') ? 'active' : '' }}">
+                            <li class="list-group-item {{ Request::is('thread/create') ? 'active' : '' }}">
                                 <a href="{{ route('thread.create') }}" class="text-black" style="text-decoration: none">New Thread</a>
+                            </li>
+
+                            <li class="list-group-item {{ request('by') == 'populer' ? 'active' : '' }}">
+                                <a href="/forum/filter?by=populer" class="text-black" style="text-decoration: none">Populer</a>
+                            </li>
+                            
+                            <li class="list-group-item {{ request('by') == 'me' ? 'active' : '' }}">
+                                <a href="/forum/filter?by=me" class="text-black" style="text-decoration: none">My Threads</a>
+                            </li>
+                            
+                            <li class="list-group-item {{ request('by') == 'answered' ? 'active' : '' }}">
+                                <a href="{{ route('thread.filter', ['by' => 'answered']) }}" class="text-black" style="text-decoration: none">Answered</a>
+                            </li>
+
+                            <li class="list-group-item mb-2 {{ request('by') == 'unanswered' ? 'active' : '' }}">
+                                <a href="{{ route('thread.filter', ['by' => 'unanswered']) }}" class="text-black" style="text-decoration: none">Unaswered</a>
                             </li>
                             
                             <tags></tags>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Forum\AnswerController;
+use App\Http\Controllers\Forum\FilterController;
 use App\Http\Controllers\Forum\ReplyController;
 use App\Http\Controllers\Forum\SearchController;
 use App\Http\Controllers\Forum\TagController;
@@ -40,6 +41,9 @@ Route::patch('mark-as-answer/{reply}', [AnswerController::class, 'store'])->name
 
 // search
 Route::get('forum/search', [SearchController::class, 'index'])->name('thread.search');
+
+// filter
+Route::get('forum/filter', [FilterController::class, 'filter'])->name('thread.filter');
 
 // tag
 Route::get('forum/tags',[TagController::class, 'index'])->name('tag.index');

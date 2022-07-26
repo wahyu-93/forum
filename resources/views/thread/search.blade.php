@@ -39,6 +39,7 @@
 
                         <small class="text-secondary">
                             <a href="" style="text-decoration: none;" class="text-secondary"> {{ $thread->user->name }} </a> publish {{ $thread->created_at->diffForhumans() }}
+                            &middot; {{ $thread->replies_count }} {{ Str::plural('reply', $thread->replies_count) }}
                         </small>
                         
                         <div class="mt-1">

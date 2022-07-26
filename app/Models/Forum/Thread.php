@@ -13,6 +13,7 @@ class Thread extends Model
 
     protected $guarded = ['id'];
     protected $with = ['tag', 'user'];
+    protected $withCount = ['replies'];
 
     public function searchableAs()
     {
