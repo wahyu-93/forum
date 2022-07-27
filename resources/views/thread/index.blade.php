@@ -24,7 +24,7 @@
                             width="40" height="40"
                             class="rounded-circle"
                             style="object-fit: cover; object-position: center"
-                            src="{{ $thread->user->avatar() }}" 
+                            src="{{ asset($thread->user->avatar()) }}" 
                             alt="...">
                     </div>
                 
@@ -38,7 +38,7 @@
                         </div>
 
                         <small class="text-secondary">
-                            <a href="{{ route('thread.filter.user', $thread->user) }}" style="text-decoration: none;" class="text-secondary"> {{ $thread->user->name }} </a> publish {{ $thread->created_at->diffForhumans() }}
+                            <a href="{{ route('thread.filter.user', $thread->user->usernameOrHash()) }}" style="text-decoration: none;" class="text-secondary"> {{ $thread->user->name }} </a> publish {{ $thread->created_at->diffForhumans() }}
                             &middot; {{ $thread->replies_count }} {{ Str::plural('reply', $thread->replies_count) }}
                         </small>
                         

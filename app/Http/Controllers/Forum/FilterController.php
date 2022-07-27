@@ -44,7 +44,7 @@ class FilterController extends Controller
         // $threads = $user->threads()->latest()->paginate(10);
         // $user = Thread::where('user_id', $user->id)->get();
         
-        $user = User::withCount('threads')->whereName($user)->first();
+        $user = User::withCount('threads')->whereUsername($user)->orwhere('hash', $user)->first();
         $threads = $user->threads()->latest()->paginate(10);
 
         return view('user.threadList', compact('threads', 'user'));

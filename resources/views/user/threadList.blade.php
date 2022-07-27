@@ -11,7 +11,7 @@
                         width="40" height="40"
                         class="rounded-circle"
                         style="object-fit: cover; object-position: center"
-                        src="{{ $user->avatar() }}" 
+                        src="{{ asset($user->avatar()) }}" 
                         alt="...">
                 </div>
             

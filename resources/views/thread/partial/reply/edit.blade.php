@@ -13,7 +13,7 @@
                         width="40" height="40"
                         class="rounded-circle"
                         style="object-fit: cover; object-position: center"
-                        src="{{ $thread->user->avatar() }}" 
+                        src="{{ asset($thread->user->avatar()) }}" 
                         alt="...">
                 </div>
             

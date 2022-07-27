@@ -23,6 +23,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'hash',
+        'username',
+        'avatar'
     ];
 
     /**
@@ -44,11 +47,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getRouteKeyName()
-    {
-        return 'name';
-    }
-
     public function threads()
     {
         return $this->hasMany(Thread::class);
@@ -56,11 +54,21 @@ class User extends Authenticatable
 
     public function avatar($size = '200')
     {
-        return $grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $this->email ) ) ) . "?d=mm&s=" . $size;
+        if($this->avatar){
+            return 'storage/'.$this->avatar;
+        }
+        else{
+            return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $this->email ) ) ) . "?d=mm&s=" . $size;
+        };
     }
 
     public function replies()
     {
         return $this->hasMany(Reply::class);
+    }
+
+    public function usernameOrHash()
+    {
+        return $this->username ?: $this->hash;
     }
 }

@@ -5,7 +5,7 @@
                 width="40" height="40"
                 class="rounded-circle"
                 style="object-fit: cover; object-position: center"
-                src="{{ $reply->user->avatar() }}" 
+                src="{{ asset($reply->user->avatar()) }}" 
                 alt="...">
         </div>
         

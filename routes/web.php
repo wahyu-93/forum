@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Forum\AnswerController;
 use App\Http\Controllers\Forum\FilterController;
 use App\Http\Controllers\Forum\ReplyController;
@@ -49,3 +50,7 @@ Route::get('forum/user/{user}', [FilterController::class, 'filterByUser'])->name
 // tag
 Route::get('forum/tags',[TagController::class, 'index'])->name('tag.index');
 Route::get('forum/{tag}', [TagController::class, 'show'])->name('tag.show');
+
+// account
+Route::get('accoount/edit', [AccountController::class, 'edit'])->name('account.edit');
+Route::patch('accoount/update', [AccountController::class, 'update'])->name('account.update');
