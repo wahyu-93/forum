@@ -44,6 +44,7 @@ Route::get('forum/search', [SearchController::class, 'index'])->name('thread.sea
 
 // filter
 Route::get('forum/filter', [FilterController::class, 'filter'])->name('thread.filter');
+Route::get('forum/user/{user}', [FilterController::class, 'filterByUser'])->name('thread.filter.user');
 
 // tag
 Route::get('forum/tags',[TagController::class, 'index'])->name('tag.index');

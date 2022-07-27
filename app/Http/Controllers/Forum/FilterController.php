@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Forum;
 
 use App\Http\Controllers\Controller;
 use App\Models\Forum\Thread;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class FilterController extends Controller
@@ -36,5 +37,16 @@ class FilterController extends Controller
         }
 
         return view('thread.index', compact('threads', 'query'));
+    }
+
+    public function filterByUser($user)
+    {
+        // $threads = $user->threads()->latest()->paginate(10);
+        // $user = Thread::where('user_id', $user->id)->get();
+        
+        $user = User::withCount('threads')->whereName($user)->first();
+        $threads = $user->threads()->latest()->paginate(10);
+
+        return view('user.threadList', compact('threads', 'user'));
     }
 }

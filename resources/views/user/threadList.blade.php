@@ -1,33 +1,44 @@
 @extends('layouts.app')
 
-@section('title', 'Forum')
+@section('title', 'Profile User')
 
 @section('content')
-    <form action="{{ route('thread.search') }}" method="GET" class="mb-2" autocomplete="off">
-        <input type="search" name="query" class="form-control" placeholder="Search Thread . . .">
-    </form>
+   <div class="card mb-3">
+       <div class="card-body">
+            <div class="d-flex">
+                <div class="flex-shrink-0">
+                    <img 
+                        width="40" height="40"
+                        class="rounded-circle"
+                        style="object-fit: cover; object-position: center"
+                        src="{{ $user->avatar() }}" 
+                        alt="...">
+                </div>
+            
+                <div class="flex-grow-1 ms-3">
+                    <h5 class="mb-0">
+                        {{ $user->name }}
+                    </h5>
+                    
+                   
+                    <small class="text-secondary">
+                        <strong>{{ $user->threads_count }} Thread</strong>
+                        &middot; <strong>Joined {{ date("d M Y", strtotime($user->created_at)) }} </strong>
+                    </small>
+                </div>
+            </div>
+       </div>
+   </div>
 
     <div class="card">
         <div class="card-header">
-            <a class="text-decoration-none text-secondary" href="{{ route('thread.index') }}" >Forum</a>
-            @isset($tag)
-                <span>/ <a class="text-decoration-none text-secondary"> {{ $tag->name }}</span>
-            @endisset
-
+            <a class="text-decoration-none text-secondary" href="{{ route('thread.index') }}" >Thread List</a>
         </div>
 
         <div class="card-body">
-            @forelse ($threads as $thread)
+            @foreach ($threads as $thread)
                 <div class="d-flex mb-4">
-                    <div class="flex-shrink-0">
-                        <img 
-                            width="40" height="40"
-                            class="rounded-circle"
-                            style="object-fit: cover; object-position: center"
-                            src="{{ $thread->user->avatar() }}" 
-                            alt="...">
-                    </div>
-                
+                                    
                     <div class="flex-grow-1 ms-3">
                         <h5>
                             <a href="{{ route('thread.show', [$thread->tag, $thread]) }}" class="text-decoration-none text-black">{{ $thread->title }}</a>
@@ -49,11 +60,14 @@
                     </div>
                 </div>
 
-            @empty
-                <p class="mb-0">We can not find what are your looing for . . . <a href="{{ route('thread.index') }}">Browse threads</a></p>    
-            @endforelse
+            @endforeach
+
+            @isset($query)
+                {{ $threads->appends(['by' => $query])->links() }}
+            @else
+                {{ $threads->links() }}
+            @endisset
             
-            {{ $threads->links() }}
             
         </div>
     </div>

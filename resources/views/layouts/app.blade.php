@@ -46,7 +46,7 @@
                             </li>
 
                             <li class="list-group-item mb-2 {{ request('by') == 'unanswered' ? 'active' : '' }}">
-                                <a href="{{ route('thread.filter', ['by' => 'unanswered']) }}" class="text-black" style="text-decoration: none">Unaswered</a>
+                                <a href="{{ route('thread.filter', ['by' => 'unanswered']) }}" class="text-black" style="text-decoration: none">Not Yet Replies</a>
                             </li>
                             
                             <tags></tags>
