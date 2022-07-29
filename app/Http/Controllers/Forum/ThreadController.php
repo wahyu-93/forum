@@ -56,6 +56,8 @@ class ThreadController extends Controller
 
         auth()->user()->threads()->create($this->requestThreadForm($slug));
 
+        toast('Your Thread Has Been Success To Publish', 'success');
+
         return redirect()->route('thread.index');
     }
 
@@ -103,6 +105,8 @@ class ThreadController extends Controller
 
         $thread->update($this->requestThreadForm($slug));
 
+        toast('Your Thread Has Been Success To Edit', 'success');
+
         return redirect()->route('thread.show',[$thread->tag, $thread]);
     }
 
@@ -127,6 +131,8 @@ class ThreadController extends Controller
         $this->authorize('update', $thread);
 
         $thread->delete();
+
+        toast('Your Thread Has Been Success To Delete', 'success');
 
         return redirect()->route('thread.index');
     }

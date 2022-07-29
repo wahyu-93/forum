@@ -20,6 +20,8 @@ class AnswerController extends Controller
         $reply->thread->reply_id = $reply->id;
         $reply->thread->save();
 
+        toast('The Best Answer Has Been Choice', 'success');
+
         return back();
     }
 }

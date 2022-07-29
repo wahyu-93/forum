@@ -23,7 +23,8 @@
 <body>
     <div id="app">
         @include('layouts.partials.navigation')
-
+        @include('sweetalert::alert')
+        
         <div class="py-4">
             <div class="container">
                 <div class="row">

@@ -28,6 +28,9 @@ class ReplyController extends Controller
             'hash'      => strtotime(Carbon::now()). "-" . Str::random(32),
         ]);
 
+        toast('Your Reply Has Been Success To Publish', 'success');
+
+
         return back();
     }
 
@@ -52,6 +55,8 @@ class ReplyController extends Controller
         $reply->update([
             'body' => $request->body,
         ]);
+
+        toast('Your Reply Has Been Success To Edit', 'success');
 
         return redirect()->route('thread.show', [$thread->tag, $thread]);
     }
